@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Work_Logger"
+version = "1.0.0"
+authors = [
+    {name = "Sabarish", email = "sabarish.science@gmail.com"},
+    {name = "Sowmiya", email = "sowmiyabalan97@outlook.com"}
+]
+description = "My package description"
+readme = "README.md"
+requires-python = ">=3.5"
+license = {text = "BSD-3-Clause"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "pandas"
+]
+[project.scripts]
+imin = "work_logger.timings:imin"
+imout = "work_logger.timings:imout" 
