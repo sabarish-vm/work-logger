@@ -8,16 +8,24 @@ targetTimeHours=8
 targetTimeSecs=3600*targetTimeHours
 
 def archiveLoader(filepath) :
-    if not os.path.exists(archiveFile) and os.path.exists(todayFile): 
-        os.rename(todayFile,archiveFile)
-    else :
+    if not os.path.exists(tIMINGSDIR) :
+        os.makedirs(tIMINGSDIR)
+    else : pass
+    if os.path.exists(archiveFile) and os.path.exists(todayFile) :
         df1=pd.read_csv(archiveFile)
         df2=pd.read_csv(todayFile)
         df=pd.concat([df1,df2])
         df.to_csv(archiveFile,index=False)
-        with open(filepath,'w') as f :
-            f.write('')
-        os.remove(todayFile)
+        os.remove(todayFile) 
+    if not os.path.exists(archiveFile) and os.path.exists(todayFile): 
+        os.rename(todayFile,archiveFile)
+    elif not os.path.exists(archiveFile) and not os.path.exists(todayFile):
+        df = pd.DataFrame(columns=['In','Out','Duration','Comments'])
+        df.to_csv(archiveFile,index=False)
+        df.to_csv(todayFile,index=False)
+    else : pass
+    with open(filepath,'w') as f :
+        f.write('')
         
 def datechecker() :
     today=dt.datetime.today().date().isoformat()
